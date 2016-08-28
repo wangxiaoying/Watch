@@ -145,7 +145,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
         try {
             this.mCanvas = this.mHolder.lockCanvas();
             if(this.mCanvas != null) {
-                mCanvas.drawColor(Color.WHITE);
+                mCanvas.drawColor(Color.BLACK);
                 float e = this.mStartAngle;
                 float sweepAngle = (float)(360 / this.mItemCount);
 
