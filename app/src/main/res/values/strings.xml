@@ -2,4 +2,7 @@
     <string name="app_name">Watch</string>
     <string name="btn_lottery">Lucky!</string>
     <string name="btn_gift">Gift!</string>
+    <string name="btn_exchange">Exchange!</string>
+    <string name="btn_gift_left">&lt;</string>
+    <string name="btn_gift_right">&gt;</string>
 </resources>
