@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Watch</string>
+    <string name="btn_lottery">Lucky!</string>
+    <string name="btn_gift">Gift!</string>
+</resources>
