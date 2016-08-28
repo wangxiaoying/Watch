@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="123"
-        android:textSize="50sp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/gift_name_text"
@@ -43,7 +43,7 @@
         android:layout_toStartOf="@id/gift_right_btn"
         android:gravity="center"
         android:text="hahah"
-        android:textSize="20sp"/>
+        android:textSize="10sp"/>
 
     <Button
         android:layout_width="wrap_content"
