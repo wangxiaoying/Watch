@@ -1,8 +1,8 @@
 package org.feiyang.watch;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +19,8 @@ public class LotteryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lottery);
 
-        luckyPanView = (LuckyPanView)findViewById(R.id.luck_pan_view);
-        panControlBtn = (Button)findViewById(R.id.pan_control_btn);
+        luckyPanView = (LuckyPanView) findViewById(R.id.luck_pan_view);
+        panControlBtn = (Button) findViewById(R.id.pan_control_btn);
         resultText = (TextView) findViewById(R.id.result_text);
 
         luckyPanView.setOnSpinFinshedCallback(new LuckyPanView.OnSpinFinshedCallback() {
@@ -39,14 +39,12 @@ public class LotteryActivity extends AppCompatActivity {
         panControlBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Log.d("TEST", "on click");
-                if(luckyPanView.isStart()) {
+                if (luckyPanView.isStart()) {
                     panControlBtn.setBackgroundColor(Color.GREEN);
                     luckyPanView.luckyEnd();
-                } else
-                {
+                } else {
                     panControlBtn.setBackgroundColor(Color.RED);
                     luckyPanView.luckyStart();
                 }

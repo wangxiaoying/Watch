@@ -1,8 +1,8 @@
 package org.feiyang.watch;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,14 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickLotteryButton(View view)
-    {
+    public void onClickLotteryButton(View view) {
         Intent intent = new Intent(this, LotteryActivity.class);
         startActivity(intent);
     }
 
-    public void onClickGiftButton(View view)
-    {
+    public void onClickGiftButton(View view) {
         Intent intent = new Intent(this, GiftActivity.class);
         startActivity(intent);
     }
