@@ -1,18 +1,20 @@
 package org.feiyang.watch;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class LotteryActivity extends AppCompatActivity {
 
     private LuckyPanView luckyPanView;
     private Button panControlBtn;
-    private TextView resultText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +23,23 @@ public class LotteryActivity extends AppCompatActivity {
 
         luckyPanView = (LuckyPanView) findViewById(R.id.luck_pan_view);
         panControlBtn = (Button) findViewById(R.id.pan_control_btn);
-        resultText = (TextView) findViewById(R.id.result_text);
 
         luckyPanView.setOnSpinFinshedCallback(new LuckyPanView.OnSpinFinshedCallback() {
             @Override
             public void onSpinFinished(final int resultIndex) {
-                resultText.postDelayed(new Runnable() {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("TEST", "begin set " + resultIndex);
-                        resultText.setText("" + resultIndex);
+                        AlertDialog alertDialog = new AlertDialog.Builder(LotteryActivity.this).create();
+                        // TODO: 修改对话框样式 & 内容
+                        alertDialog.setMessage("haha: " + resultIndex);
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
                     }
                 }, 200);
             }

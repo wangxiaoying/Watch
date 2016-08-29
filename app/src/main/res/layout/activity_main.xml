@@ -20,22 +20,22 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center|bottom"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
             android:layout_marginStart="0dp"
             android:onClick="onClickLotteryButton"
-            android:text="@string/btn_lottery" />
+            android:text="@string/btn_lottery"
+            style="?android:borderlessButtonStyle"/>
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center|bottom"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
             android:layout_marginEnd="0dp"
             android:onClick="onClickGiftButton"
-            android:text="@string/btn_gift" />
+            android:text="@string/btn_gift"
+            style="?android:borderlessButtonStyle"/>
     </LinearLayout>
 
 </LinearLayout>

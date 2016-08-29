@@ -5,7 +5,7 @@ package org.feiyang.watch;
  */
 public class GiftInfo {
 
-    static private String DEFAULT_NAME = "DEFAULT_NAME";
+    static private String DEFAULT_NAME = "Gift";
     static private String DEFAULT_SCORE = "10";
 
     public String mName;

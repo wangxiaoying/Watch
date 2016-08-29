@@ -30,6 +30,7 @@ public class GiftActivity extends AppCompatActivity {
 
     public void onClickExchangeButton(View view) {
         AlertDialog alertDialog = new AlertDialog.Builder(GiftActivity.this).create();
+        // TODO: 修改对话框样式 & 内容
         alertDialog.setMessage("haha: " + viewPager.getCurrentItem());
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
