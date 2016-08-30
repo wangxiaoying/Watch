@@ -11,10 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Date;
+import java.util.Random;
+
 public class LotteryActivity extends AppCompatActivity {
 
     private LuckyPanView luckyPanView;
     private Button panControlBtn;
+    private Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,8 @@ public class LotteryActivity extends AppCompatActivity {
 
         luckyPanView = (LuckyPanView) findViewById(R.id.luck_pan_view);
         panControlBtn = (Button) findViewById(R.id.pan_control_btn);
+        random = new Random();
+        random.setSeed(new Date().getTime());
 
         luckyPanView.setOnSpinFinshedCallback(new LuckyPanView.OnSpinFinshedCallback() {
             @Override
@@ -49,13 +55,17 @@ public class LotteryActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Log.d("TEST", "on click");
-                if (luckyPanView.isStart()) {
-                    panControlBtn.setBackgroundColor(Color.GREEN);
-                    luckyPanView.luckyEnd();
-                } else {
-                    panControlBtn.setBackgroundColor(Color.RED);
+                if (!luckyPanView.isStart()) {
                     luckyPanView.luckyStart();
+                    int delay_misec = random.nextInt(3000)+1000;
+                    Log.d("DELAY", "misec: "+delay_misec);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            luckyPanView.luckyEnd();
+                        }
+                    }, delay_misec);
+
                 }
             }
         });

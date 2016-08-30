@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.SurfaceHolder;
@@ -26,11 +27,12 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
     private boolean isRunning;
 
     // 每个盘块的颜色
-    private int[] mColors = new int[]{0xFFFFC300, 0xFFF17E01, 0xFFFFC300, 0xFFF17E01, 0xFFFFC300, 0xFFF17E01};
+//    private int[] mColors = new int[]{0xFFFFC300, 0xFFF17E01, 0xFFFFC300, 0xFFF17E01, 0xFFFFC300, 0xFFF17E01};
+    private int[] mColors = new int[]{0xFFE2F4FB, 0xFF8AD5F0, 0xFF2CB1E1, 0xFFE2F4FB, 0xFF8AD5F0, 0xFF2CB1E1};
 
     // TODO: 设置转盘上的字图案
     // 抽奖的文字
-    private String[] mStrs = new String[]{"0", "1", "2", "3", "4", "5"};
+    private String[] mStrs = new String[]{"0", "10", "2", "23", "4", "15"};
     // 与文字对应的图片
     private int[] mImgs = new int[]{R.drawable.bulb, R.drawable.camera,
             R.drawable.phone, R.drawable.computer, R.drawable.cup,
@@ -72,7 +74,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
     private float totalAngle = 0;
 
     // 文字的大小
-    private float mTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 20, getResources().getDisplayMetrics());
+    private float mTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 25, getResources().getDisplayMetrics());
 
     // 旋转完成时的回调函数
     private OnSpinFinshedCallback spinResultCallback;
@@ -98,7 +100,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = Math.min(this.getMeasuredWidth(), this.getMeasuredHeight());
-        mTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, width / 30, getResources().getDisplayMetrics());
+        mTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, width / 18, getResources().getDisplayMetrics());
         this.mRadius = width - this.getPaddingLeft() - this.getPaddingRight();
         this.mPadding = this.getPaddingLeft();
         this.mCenter = width / 2;
@@ -110,8 +112,9 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
         this.mArcPaint.setAntiAlias(true);
         this.mArcPaint.setDither(true);
         this.mTextPaint = new Paint();
-        this.mTextPaint.setColor(-1);
+        this.mTextPaint.setColor(Color.argb(255, 248, 87, 22));
         this.mTextPaint.setTextSize(this.mTextSize);
+        this.mTextPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         this.mArrowPaint = new Paint();
         this.mArrowPaint.setAntiAlias(true);
         this.mArrowPaint.setColor(Color.RED);
@@ -165,7 +168,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
                     e += sweepAngle;
                 }
 
-                this.drawArrow();
+                // this.drawArrow();
 
                 this.mStartAngle = (float) ((double) this.mStartAngle + this.mSpeed);
                 if (this.isShouldEnd) {
@@ -209,13 +212,13 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
 
     // 画指针箭头
     private void drawArrow() {
-        /*Path path = new Path();
+        Path path = new Path();
         path.moveTo(mCenter, mCenter - mCenter / 3);
         path.lineTo(mCenter + mCenter / 8, mCenter);
         path.lineTo(mCenter - mCenter / 8, mCenter);
         path.close();
         mCanvas.drawPath(path, mArrowPaint);
-        mCanvas.drawCircle(mCenter, mCenter, mCenter/6, mArrowPaint);*/
+        mCanvas.drawCircle(mCenter, mCenter, mCenter/6, mArrowPaint);
     }
 
     private void drawIcon(float startAngle, int i) {

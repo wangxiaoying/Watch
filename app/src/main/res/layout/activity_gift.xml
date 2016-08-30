@@ -9,15 +9,18 @@
         android:id="@+id/gift_pager"
         android:layout_width="match_parent"
         android:layout_height="120dp">
-
     </android.support.v4.view.ViewPager>
 
+
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:text="兑换"
+        android:layout_gravity="right"
+        android:layout_marginRight="7.0dip"
+        android:background="@drawable/exchange"
+        android:onClick="onClickExchangeButton"
         android:layout_alignParentBottom="true"
-        android:text="@string/btn_exchange"
-        android:onClick="onClickExchangeButton"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

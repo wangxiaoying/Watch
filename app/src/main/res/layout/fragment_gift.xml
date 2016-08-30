@@ -8,13 +8,23 @@
         android:id="@+id/gift_score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/coin"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textColor="@color/backgroundColor"
         android:text="@string/text_deft_score"/>
 
     <TextView
-        android:id="@+id/gift_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/text_deft_name"/>
+    android:id="@+id/gift_name_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|bottom"
+    android:gravity="center"
+    android:layout_centerVertical="true"
+    android:background="@drawable/gift_name"
+    android:text="铅笔"/>
+
+
 </FrameLayout>

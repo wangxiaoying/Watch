@@ -4,14 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:text="Hello World!"
-        android:textSize="30sp" />
+        android:layout_weight="7">
+
+        <ImageView
+            android:id="@+id/score_img"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/coin"/>
+
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="30sp"
+            android:textColor="@color/backgroundColor"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,23 +33,24 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="0dp"
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
             android:onClick="onClickLotteryButton"
-            android:text="@string/btn_lottery"
-            style="?android:borderlessButtonStyle"/>
+            android:background="@drawable/lottery" />
 
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="0dp"
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
             android:onClick="onClickGiftButton"
-            android:text="@string/btn_gift"
-            style="?android:borderlessButtonStyle"/>
+            android:background="@drawable/gift" />
+
     </LinearLayout>
 
 </LinearLayout>
