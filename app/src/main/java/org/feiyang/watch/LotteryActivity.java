@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -45,17 +44,24 @@ public class LotteryActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        customDialog.Builder builder = new customDialog.Builder(LotteryActivity.this);
-                        // TODO: 修改对话框样式 & 内容
-                        builder.setMessage("金币不足,无法获取!!!!!!");
-                        builder.setokButton("确定",
-
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        builder.create().show();
+                        final String result = luckyPanView.mStrs[resultIndex];
+                        RequestParams params = new RequestParams();
+                        params.put("detail", "抽奖获得金币");
+                        params.put("gold", result);
+                        HttpUtils.Post("addScore", params, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                customDialog.Builder builder = new customDialog.Builder(LotteryActivity.this);
+                                builder.setMessage("抽奖结果: "+ ("未中奖".equals(result)?result:result+"金币"));
+                                builder.setokButton("确定",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                builder.create().show();
+                            }
+                        });
                     }
                 }, 200);
             }
@@ -83,34 +89,43 @@ public class LotteryActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
-
-
             if (!luckyPanView.isStart()) {
-
                 // 抽奖扣除积分
                 RequestParams params = new RequestParams();
-                params.put("detail", "抽奖消耗积分");
+                params.put("detail", "抽奖消耗金币");
                 params.put("gold", "-5");
                 HttpUtils.Post("addScore", params, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
+                        try {
+                            String status = response.getString("status");
+                            if ("0".equals(status)){
+                                luckyPanView.luckyStart();
+                                int delay_misec = random.nextInt(6666) + 2333;
+                                Log.d("DELAY", "misec: " + delay_misec);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        luckyPanView.luckyEnd();
+                                    }
+                                }, delay_misec);
+                            }else {
+                                customDialog.Builder builder = new customDialog.Builder(LotteryActivity.this);
+                                builder.setMessage("金币不足,无法抽奖!");
+                                builder.setokButton("确定",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                                finish();
+                                            }
+                                        });
+                                builder.create().show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
-
-                //TODO: 积分不足时无法抽奖
-
-
-                luckyPanView.luckyStart();
-                int delay_misec = random.nextInt(6666) + 2333;
-                Log.d("DELAY", "misec: " + delay_misec);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        luckyPanView.luckyEnd();
-                    }
-                }, delay_misec);
             }
         }
     };

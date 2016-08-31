@@ -28,16 +28,16 @@ public class GiftActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private GiftPageAdaper giftPageAdaper;
-//    private ProgressBar prgBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gift);
+//        Bundle bundle;
+//        bundle = this.getIntent().getExtras();
+//        System.out.print(bundle.getString("Score"));
 
-//        prgBar = (ProgressBar)findViewById(R.id.prgBar);
         viewPager = (ViewPager) findViewById(R.id.gift_pager);
-//        setProgressBarIndeterminateVisibility(true);
 
         updateGiftInfoList();
 
@@ -50,12 +50,13 @@ public class GiftActivity extends AppCompatActivity {
         customDialog.Builder builder = new customDialog.Builder(this);
         // TODO: 修改对话框样式 & 内容
         // builder.setTitle("提示");
-        builder.setMessage("是否兑换? " + viewPager.getCurrentItem());
+        final GiftInfo currentGift = giftInfoList.get(viewPager.getCurrentItem());
+        builder.setMessage("是否兑换'" + currentGift.mName + "'?");
         builder.setPositiveButton( "确定",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //dialog.dismiss();
                         confirmExchange(currentGift.mId);
+                        dialog.dismiss();
                     }
                 });
         builder.setNegativeButton("取消",
@@ -67,27 +68,34 @@ public class GiftActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    // TODO: 兑换礼物 缺少确认兑换操作
     private void confirmExchange(String gId) {
         RequestParams params = new RequestParams();
         params.put("id", gId);
         HttpUtils.Post("exchangeGift", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                AlertDialog alertDialog = new AlertDialog.Builder(GiftActivity.this).create();
-                // TODO: 修改对话框样式 & 内容
-                alertDialog.setMessage("兑换成功");//TODO: 用词不当
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                try {
+                    String status = response.getString("status");
+                    AlertDialog alertDialog = new AlertDialog.Builder(GiftActivity.this).create();
+                    if ("0".equals(status)){
+                        alertDialog.setMessage("申请成功");
+                    }else{
+                        alertDialog.setMessage("积分不够, 快去努力赚积分!");
+                    }
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    finish();
+                                }
+                            });
+                    alertDialog.show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
-
 
     // TODO: 填充礼物列表
     private void updateGiftInfoList() {

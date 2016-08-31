@@ -18,6 +18,7 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
 
     private TextView score_text;
+    private String score = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    score_text.setText(response.getString("msg"));
+                    score = response.getString("msg");
+                    score_text.setText(score);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    score_text.setText("网络异常");
                 }
             }
         });
@@ -39,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickLotteryButton(View view) {
         Intent intent = new Intent(this, LotteryActivity.class);
+        intent.putExtra("Score",score);
         startActivity(intent);
     }
 
     public void onClickGiftButton(View view) {
         Intent intent = new Intent(this, GiftActivity.class);
+        intent.putExtra("Score",score);
         startActivity(intent);
     }
 }
