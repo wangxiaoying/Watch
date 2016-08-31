@@ -18,7 +18,7 @@ public class LotteryActivity extends AppCompatActivity {
 
     private LuckyPanView luckyPanView;
     private Button panControlBtn;
-    private Random random;
+    private Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,6 @@ public class LotteryActivity extends AppCompatActivity {
 
         luckyPanView = (LuckyPanView) findViewById(R.id.luck_pan_view);
         panControlBtn = (Button) findViewById(R.id.pan_control_btn);
-        random = new Random();
         random.setSeed(new Date().getTime());
 
         luckyPanView.setOnSpinFinshedCallback(new LuckyPanView.OnSpinFinshedCallback() {
@@ -36,16 +35,16 @@ public class LotteryActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        AlertDialog alertDialog = new AlertDialog.Builder(LotteryActivity.this).create();
+                        customDialog.Builder builder = new customDialog.Builder(LotteryActivity.this);
                         // TODO: 修改对话框样式 & 内容
-                        alertDialog.setMessage("haha: " + resultIndex);
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        builder.setMessage("金币不足,无法获取!!!!!!");
+                        builder.setokButton("确定",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
                                     }
                                 });
-                        alertDialog.show();
+                        builder.create().show();
                     }
                 }, 200);
             }
@@ -58,7 +57,7 @@ public class LotteryActivity extends AppCompatActivity {
                 if (!luckyPanView.isStart()) {
                     luckyPanView.luckyStart();
                     int delay_misec = random.nextInt(3000)+1000;
-                    Log.d("DELAY", "misec: "+delay_misec);
+//                    Log.d("DELAY", "misec: "+delay_misec);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {

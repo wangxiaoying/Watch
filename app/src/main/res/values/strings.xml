@@ -5,6 +5,7 @@
     <string name="btn_gift">Gift!</string>
     <string name="btn_exchange">Exchange!</string>
 
+    <string name="text_exchange">兑换</string>
     <string name="text_deft_score">"100"</string>
     <string name="text_deft_name">Test</string>
 

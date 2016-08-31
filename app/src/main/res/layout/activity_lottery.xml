@@ -13,8 +13,8 @@
     <Button
         android:id="@+id/pan_control_btn"
         android:background="@drawable/lottery_btn"
-        android:layout_width="67px"
-        android:layout_height="85px"
+        android:layout_width="40.2dp"
+        android:layout_height="51dp"
         android:layout_centerInParent="true" />
 
 </RelativeLayout>

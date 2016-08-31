@@ -6,4 +6,5 @@
     <color name="backgroundColor">#000000</color>
     <color name="colorPanStart">#92C500</color>
     <color name="colorPanStop">#F83A3A</color>
+    <color name="colorScore">#FF8A00</color>
 </resources>

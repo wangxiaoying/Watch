@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,16 +30,23 @@ public class GiftActivity extends AppCompatActivity {
     }
 
     public void onClickExchangeButton(View view) {
-        AlertDialog alertDialog = new AlertDialog.Builder(GiftActivity.this).create();
+        customDialog.Builder builder = new customDialog.Builder(this);
         // TODO: 修改对话框样式 & 内容
-        alertDialog.setMessage("haha: " + viewPager.getCurrentItem());
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        // builder.setTitle("提示");
+        builder.setMessage("是否兑换? " + viewPager.getCurrentItem());
+        builder.setPositiveButton( "确定",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
-        alertDialog.show();
+        builder.setNegativeButton("取消",
+                new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.create().show();
     }
 
     public static class GiftPageAdaper extends FragmentPagerAdapter {
@@ -60,6 +68,7 @@ public class GiftActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            Log.d("TEST", "position: " + position);
             return GiftFragment.newInstance(giftInfoList.get(position));
         }
 

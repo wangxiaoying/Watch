@@ -7,12 +7,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_weight="20">
 
         <ImageView
             android:id="@+id/score_img"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_centerInParent="true"
             android:src="@drawable/coin"/>
 
@@ -21,10 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_alignStart="@id/score_img"
+            android:layout_alignEnd="@id/score_img"
             android:gravity="center"
-            android:text="0"
-            android:textSize="30sp"
-            android:textColor="@color/backgroundColor"/>
+            android:text="@string/text_deft_score"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorScore"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -36,20 +39,20 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="start|center_vertical"
+            android:layout_gravity="start|top"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
-            android:onClick="onClickLotteryButton"
-            android:background="@drawable/lottery" />
+            android:onClick="onClickGiftButton"
+            android:background="@drawable/gift" />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="end|top"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="10dp"
-            android:onClick="onClickGiftButton"
-            android:background="@drawable/gift" />
+            android:onClick="onClickLotteryButton"
+            android:background="@drawable/lottery" />
 
     </LinearLayout>
 
