@@ -32,7 +32,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback,
 
     // TODO: 设置转盘上的字图案
     // 抽奖的文字
-    private String[] mStrs = new String[]{"0", "10", "2", "23", "4", "15"};
+    public String[] mStrs = new String[]{"未中奖", "未中奖", "未中奖", "未中奖", "未中奖", "未中奖"};
     // 与文字对应的图片
     private int[] mImgs = new int[]{R.drawable.bulb, R.drawable.camera,
             R.drawable.phone, R.drawable.computer, R.drawable.cup,
