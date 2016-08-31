@@ -105,6 +105,7 @@ public class GiftActivity extends AppCompatActivity {
                 try {
                     JSONObject json = response.getJSONObject("msg").getJSONObject("info");
                     Iterator<?> kv = json.keys();
+                    NUM_ITEMS = 0;
                     while (kv.hasNext()) {//遍历日期
                         String key = kv.next().toString();
                         JSONArray arr = json.getJSONArray(key);
@@ -142,11 +143,16 @@ public class GiftActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Log.d("TEST", "position: " + position);
+            System.out.println("NumGI:"+NUM_ITEMS);
+            System.out.println("szGI:"+giftInfoList.size());
+            System.out.println("positionGI:"+position);
             return GiftFragment.newInstance(giftInfoList.get(position));
         }
 
         @Override
         public int getCount() {
+            System.out.println("NumGC:"+NUM_ITEMS);
+            System.out.println("szGC:"+giftInfoList.size());
             return NUM_ITEMS;
         }
     }

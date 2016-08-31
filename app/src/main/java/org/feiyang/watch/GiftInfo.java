@@ -3,6 +3,7 @@ package org.feiyang.watch;
 /**
  * Created by momo on 8/29/16.
  */
+
 public class GiftInfo {
 
     static private String DEFAULT_NAME = "Gift";
