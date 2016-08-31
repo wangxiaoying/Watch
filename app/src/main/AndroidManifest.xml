@@ -18,5 +18,5 @@
         <activity android:name=".LotteryActivity" />
         <activity android:name=".GiftActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
