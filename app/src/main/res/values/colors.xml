@@ -7,4 +7,5 @@
     <color name="colorPanStart">#92C500</color>
     <color name="colorPanStop">#F83A3A</color>
     <color name="colorScore">#FF8A00</color>
+    <color name="colorGiftName">#FFFFFF</color>
 </resources>

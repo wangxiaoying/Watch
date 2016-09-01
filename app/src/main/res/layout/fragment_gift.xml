@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/gift_score_img"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_centerInParent="true"
         android:src="@drawable/coin"/>
 
@@ -17,14 +17,15 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/text_deft_score"
-        android:textColor="@color/colorScore" />
+        android:textColor="@color/colorScore"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
 
     <ImageView
         android:id="@+id/gift_name_img"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:src="@drawable/gift_name"/>
 
@@ -37,7 +38,5 @@
         android:layout_alignTop="@id/gift_name_img"
         android:layout_alignBottom="@id/gift_name_img"
         android:gravity="center"
-        android:text="@string/text_deft_name" />
-
-
+        android:textColor="@color/colorGiftName"/>
 </RelativeLayout>

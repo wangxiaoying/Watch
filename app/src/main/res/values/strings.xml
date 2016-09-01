@@ -4,6 +4,9 @@
     <string name="btn_lottery">Lucky!</string>
     <string name="btn_gift">Gift!</string>
     <string name="btn_exchange">Exchange!</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_cancel">取消</string>
 
     <string name="text_exchange">兑换</string>
     <string name="text_deft_score">"100"</string>
